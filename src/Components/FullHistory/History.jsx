@@ -7,6 +7,9 @@ const History = () => {
       <h1 className="history-title">History</h1>
       <p className="history-content">
         bbbbbbbfffffffffffffffffffffffffffffffffffffffffffffffffffff
+
+
+        fsfsdfjkjsjf
       </p>
     </div>
   );
