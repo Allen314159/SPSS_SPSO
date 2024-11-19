@@ -53,10 +53,11 @@ Layout
 
 .main-content {
   flex: 1;
-  margin-top: 40px;
-  margin-left: 300px; /* Adjust based on sidebar width */
+  margin-top: 70px;
+  margin-left: 210px; /* Adjust based on sidebar width */
+  border-radius: 10px;
   padding: 20px;
-  background-color: aqua;
+  background-color: #E7F5DC;
 }
 
 .container {

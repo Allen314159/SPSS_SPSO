@@ -1,0 +1,103 @@
+/* General Reset */
+a,
+button,
+input,
+select,
+h1,
+h2,
+h3,
+h4,
+h5,
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: none;
+  text-decoration: none;
+  background: none;
+  -webkit-font-smoothing: antialiased;
+}
+
+menu,
+ol,
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Frame Style */
+.frame {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: space-around;
+  padding: 20px;
+  background-color: #E7F5DC;
+}
+
+/* Card Styles */
+.card,
+.card2 {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.content {
+  font-size: 16px;
+  color: #333;
+}
+
+.content2 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.text2,
+.text6 {
+  font-weight: 600;
+}
+
+.text3,
+.text4,
+.text5,
+.text7,
+.text8 {
+  font-size: 14px;
+  color: #666;
+}
+
+.text5 {
+  color: #f00;
+}
+
+.text8 {
+  color: #0f0;
+}
+
+.icon-text {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.icon-set img {
+  width: 20px;
+  height: 20px;
+}
+
+.arrow-fall,
+.arrow-fall2 {
+  filter: drop-shadow(0px 0px 2px red);
+}
+
+.arrow-rise {
+  filter: drop-shadow(0px 0px 2px green);
+}
