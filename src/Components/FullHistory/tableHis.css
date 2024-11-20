@@ -1,0 +1,20 @@
+
+.MuiTableHead-root .MuiTableRow-root .MuiTableCell-root {
+    font-weight: bold;
+    background-color: rgba(131, 203, 239, 0.44);
+}
+.MuiTableBody-root {
+    background-color: rgba(192, 232, 249, 0.22);
+}
+
+.MuiTableRow-root:hover {
+    background-color: #e0e0e0;
+}
+
+.MuiChip-root {
+    margin-right: 8px;
+}
+
+.MuiButton-root {
+    min-width: 30px; 
+}

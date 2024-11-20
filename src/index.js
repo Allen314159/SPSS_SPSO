@@ -8,6 +8,7 @@ import Overal from './Components/Overal/Overal';
 import InformationSystem from './Components/Information/InformationSystem';
 import History from './Components/FullHistory/History';
 import Request from './Components/Request/Request';
+import PrinterInformation from './Components/Printer/PrinterInformation';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -20,6 +21,7 @@ root.render(
           <Route index element={<Overal />} /> {/* Default route */}
           <Route path="tongquan" element={<Overal />} />
           <Route path="thongtin" element={<InformationSystem />} />
+          <Route path="mayin" element={<PrinterInformation/>} />
           <Route path="toanbo" element={<History />} />
           <Route path="yeucau" element={<Request />} />
         </Route>

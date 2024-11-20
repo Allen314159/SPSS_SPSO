@@ -19,6 +19,11 @@ function Sidebar() {
           <span className="link-text">Thông tin hệ thống</span>
         </NavLink>
 
+        <NavLink to="/mayin" className="nav-link-side" activeClassName="active-link">
+          <FaInfoCircle className="icon" />
+          <span className="link-text">Thông tin máy in</span>
+        </NavLink>
+
         {/* History */}
         <NavLink to="/toanbo" className="nav-link-side" activeClassName="active-link">
           <FaHistory className="icon" />

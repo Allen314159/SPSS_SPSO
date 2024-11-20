@@ -1,10 +1,16 @@
 
 import React from 'react'
+import TableInforSy from  './TableInforSy'
+import Filter from './Filter';
 
 const InformationSystem = () => {
   return (
-    <div>InformationSystem </div>
-  )
+    <>
+<Filter />
+<TableInforSy />
+    </>
+    
+  );
 }
 
 export default InformationSystem

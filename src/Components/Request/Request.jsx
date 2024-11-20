@@ -1,59 +1,19 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios"; // Install axios if you haven't already
-import { FaCheck, FaTimes } from "react-icons/fa"; // Import icons for check and cross
-import "./Request.scss"; // Assuming you're using SCSS or CSS for styling
+import axios from "axios";
+import { FaCheck, FaTimes } from "react-icons/fa";
+import "./Request.scss";
 
 const Request = () => {
-  // Declare state variables for storing print requests
   const [requests, setRequests] = useState([]);
-  const [loading, setLoading] = useState(true); // To handle loading state
-  const [error, setError] = useState(null); // To handle any errors
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  // Fetch data when the component mounts
   useEffect(() => {
     const fetchRequests = async () => {
       try {
-        // Replace with your backend API endpoint to fetch print requests
-        // const response = await axios.get("/api/print-requests"); 
-        // setRequests(response.data); // Assuming the API returns an array of requests
-
-        // Mock data (this should be replaced with the response from your API)
-        const data = [
-          {
-            "studentName": "Mạnh Cường",
-            "studentID": "2212737",
-            "printerNumber": "001",
-            "pages": 15
-          },
-          {
-            "studentName": "Mai Lan",
-            "studentID": "2212738",
-            "printerNumber": "002",
-            "pages": 10
-          },
-          {
-            "studentName": "Mai Lan",
-            "studentID": "2212738",
-            "printerNumber": "002",
-            "pages": 10
-          },
-          {
-            "studentName": "Mai Lan",
-            "studentID": "2212738",
-            "printerNumber": "002",
-            "pages": 10
-          },
-          {
-            "studentName": "Mai Lan",
-            "studentID": "2212738",
-            "printerNumber": "002",
-            "pages": 10
-          }
-        ];
-
-        // Set the requests state with the mock data
-        setRequests(data);
-        setLoading(false); // Set loading to false once the data is fetched
+        const response = await axios.get("http://localhost:8080/admin/getAllPrintRequest");
+        setRequests(response.data);
+        setLoading(false);
       } catch (err) {
         setError("Failed to fetch print requests");
         setLoading(false);
@@ -61,42 +21,41 @@ const Request = () => {
     };
 
     fetchRequests();
-  }, []); // Empty dependency array ensures this runs once on component mount
+  }, []);
 
   const handleAccept = (index) => {
     const updatedRequests = [...requests];
-    updatedRequests[index].status = "accepted";
+    updatedRequests[index].statuss = 2; // Chấp nhận
     setRequests(updatedRequests);
-
-    console.log("pass acp")
+    console.log("Accepted request with ID:", updatedRequests[index].id);
   };
 
   const handleReject = (index) => {
     const updatedRequests = [...requests];
-    updatedRequests[index].status = "rejected";
+    updatedRequests[index].statuss = 1; // Từ chối
     setRequests(updatedRequests);
-
-    console.log("pass reject")
+    console.log("Rejected request with ID:", updatedRequests[index].id);
   };
 
-  if (loading) return <div>Loading...</div>; // Show loading message
-  if (error) return <div>{error}</div>; // Show error message
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>{error}</div>;
 
   return (
     <div className="request-container">
       <h1>Yêu cầu in ấn</h1>
-      
-      {/* Display each request as a box */}
+
       <div className="request-boxes">
         {requests.map((request, index) => (
           <div className="request-box" key={index}>
             <div className="request-content">
               <p>
-                <strong>Sinh viên {request.studentName}</strong> có ID {request.studentID} yêu cầu máy in mã số {request.printerNumber} in {request.pages} trang.
+                Sinh viên có ID <strong>{request.id}</strong> 
+                yêu cầu in file <strong>{request.file_name}</strong> có độ dài là <strong>{request.nb_of_page_used} trang
+                  </strong> từ máy in có ID <strong>{request.print_id}</strong> vào ngày <strong>{request.print_date}</strong>.
               </p>
 
-              {/* Display buttons or status based on the request's current status */}
-              {(!request.status) ? (
+              {request.statuss === 0 ? (
+                // Chờ xét duyệt
                 <div className="buttons">
                   <button 
                     className="accept-btn"
@@ -109,14 +68,19 @@ const Request = () => {
                     Từ chối
                   </button>
                 </div>
-              ) : request.status === "accepted" ? (
+              ) : request.statuss === 1 ? (
+                // Đã từ chối
                 <div className="status">
-                  <FaCheck color="green" /> {/* Green tick for accepted */}
+                  <FaTimes color="red" /> Đã từ chối
+                </div>
+              ) : request.statuss === 2 ? (
+                // Đã chấp nhận
+                <div className="status">
+                  <FaCheck color="green" /> Đã chấp nhận
                 </div>
               ) : (
-                <div className="status">
-                  <FaTimes color="red" /> {/* Red cross for rejected */}
-                </div>
+                // Trường hợp không xác định (nếu có)
+                <div className="status">Không xác định</div>
               )}
             </div>
           </div>
