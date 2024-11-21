@@ -1,33 +1,24 @@
 import React, { useEffect, useState } from "react";
 import "./Overal.scss";
-import axios from "axios"; // Make sure to install axios
+import axios from "axios";
 
 const Overal = () => {
   // Declare state variables for dynamic data
-  const [totalUsers, setTotalUsers] = useState(null);
-  const [totalPrinters, setTotalPrinters] = useState(null);
-  const [pendingRequests, setPendingRequests] = useState(null);
+  const [numOfPrinter, setNumOfPrinter] = useState(null);
+  const [numOfStudent, setNumOfStudent] = useState(null);
+  const [numOfRequest0, setNumOfRequest0] = useState(null);
 
   // Fetch data when the component mounts
   useEffect(() => {
-    // Mock data for testing (replace this with an API call)
     const fetchData = async () => {
       try {
-        // If you have an API, you can uncomment this:
-        // const response = await axios.get("/api/dashboard"); // Example API call
-        // const data = response.data;
+        const response = await axios.get("http://localhost:8080/admin/getOverall");
+        const data = response.data;
 
-        // Mock data directly assigned for testing
-        const data = {
-          totalUsers: 367,
-          totalPrinters: 1156,
-          pendingRequests: 367,
-        };
-
-        // Set state with the fetched data
-        setTotalUsers(data.totalUsers);
-        setTotalPrinters(data.totalPrinters);
-        setPendingRequests(data.pendingRequests);
+        // Update state with fetched data
+        setNumOfPrinter(data.numOfPrinter);
+        setNumOfStudent(data.numOfStudent);
+        setNumOfRequest0(data.numOfRequest0);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -42,17 +33,15 @@ const Overal = () => {
       <div className="card">
         <div className="content">
           <div className="text">
-            <div className="text2">Tổng số người dùng</div>
+            <div className="text2">Tổng số máy in</div>
           </div>
         </div>
         <div className="content2">
           <div className="text3">
-            <div className="text4">{totalUsers ? `${totalUsers}K` : "Loading..."}</div>
-          </div>
-          <div className="icon-text">
-            <div className="text3">
-              <div className="text5">-0.03%</div>
-            </div>
+            <strong>
+            <div className="text4">{numOfPrinter !== null ? numOfPrinter : "Loading..."}</div>
+            </strong>
+        
           </div>
         </div>
       </div>
@@ -61,17 +50,15 @@ const Overal = () => {
       <div className="card2">
         <div className="content">
           <div className="text">
-            <div className="text6">Tổng số máy in</div>
+            <div className="text6">Tổng số sinh viên</div>
           </div>
         </div>
         <div className="content2">
           <div className="text3">
-            <div className="text7">{totalPrinters ? totalPrinters : "Loading..."}</div>
-          </div>
-          <div className="icon-text">
-            <div className="text3">
-              <div className="text8">+15.03%</div>
-            </div>
+            <strong>
+            <div className="text7">{numOfStudent !== null ? numOfStudent : "Loading..."}</div>
+            </strong>
+           
           </div>
         </div>
       </div>
@@ -80,17 +67,14 @@ const Overal = () => {
       <div className="card">
         <div className="content">
           <div className="text">
-            <div className="text2">Yêu cầu in chưa duyệt</div>
+            <div className="text2">Số yêu cầu chưa duyệt</div>
           </div>
         </div>
         <div className="content2">
           <div className="text3">
-            <div className="text4">{pendingRequests ? `${pendingRequests}K` : "Loading..."}</div>
-          </div>
-          <div className="icon-text">
-            <div className="text3">
-              <div className="text5">-0.03%</div>
-            </div>
+            <strong>
+            <div className="text4">{numOfRequest0 !== null ? numOfRequest0 : "Loading..."}</div>
+            </strong>
           </div>
         </div>
       </div>

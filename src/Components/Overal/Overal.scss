@@ -16,6 +16,7 @@ h5,
   text-decoration: none;
   background: none;
   -webkit-font-smoothing: antialiased;
+  
 }
 
 menu,
@@ -33,25 +34,49 @@ ul {
   gap: 20px;
   justify-content: space-around;
   padding: 20px;
-  background-color: #E7F5DC;
+  background-color:#E7F5DC;
+  min-height: 20vh;
 }
 
 /* Card Styles */
 .card,
 .card2 {
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
   padding: 20px;
   width: 300px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 15px;
+  transition: transform 0.3s, box-shadow 0.3s;
 }
 
+.card {
+  background: linear-gradient(135deg, #f78ca0, #f9748f);
+}
+
+.card2 {
+  background: linear-gradient(135deg, #84fab0, #8fd3f4);
+}
+
+.card:nth-child(3) {
+  background: linear-gradient(135deg, #ffecd2, #fcb69f);
+}
+
+/* Hover Effects */
+.card:hover,
+.card2:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Content Styling */
 .content {
-  font-size: 16px;
-  color: #333;
+  font-size: 18px;
+  font-weight: bold;
+  color: #ffffff;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 .content2 {
@@ -63,6 +88,7 @@ ul {
 .text2,
 .text6 {
   font-weight: 600;
+  color: #ffffff;
 }
 
 .text3,
@@ -70,17 +96,12 @@ ul {
 .text5,
 .text7,
 .text8 {
-  font-size: 14px;
-  color: #666;
+  font-size: 30px;
+  font-weight: bold;
+  color: white;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
 
-.text5 {
-  color: #f00;
-}
-
-.text8 {
-  color: #0f0;
-}
 
 .icon-text {
   display: flex;
@@ -89,8 +110,8 @@ ul {
 }
 
 .icon-set img {
-  width: 20px;
-  height: 20px;
+  width: 24px;
+  height: 24px;
 }
 
 .arrow-fall,

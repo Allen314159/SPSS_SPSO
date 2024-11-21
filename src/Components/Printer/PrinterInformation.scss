@@ -1,5 +1,5 @@
 .container {
-  max-width: 600px;
+  max-width: 900px;
   padding: 20px;
   border: 1px solid #ddd;
   border-radius: 8px;
@@ -26,6 +26,88 @@
   padding: 10px 0;
   border-bottom: 2px solid #4caf50;
 }
+
+.printer-info-card {
+  background-color: #f0f8ff; /* Light blue background for the card */
+  border: 1px solid #d0e7ff;
+  border-radius: 8px;
+  padding: 20px;
+  margin-top: 20px;
+  margin-bottom: 30px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease-in-out;
+
+  &:hover {
+    transform: scale(1.02); /* Slight zoom-in effect on hover */
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  .images {
+    text-align: center;
+    margin-bottom: 15px;
+
+    .image {
+      width: 150px;
+      height: auto;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+    }
+  }
+
+  .info-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+
+    .info-row {
+      display: flex;
+      justify-content: space-between;
+      background-color: #e3f2fd; /* Light blue for individual rows */
+      border-radius: 8px;
+      padding: 10px 15px;
+      width: 100%; /* Ensures rows take full width */
+      box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.05);
+
+      strong {
+        color: #1976d2; /* Vibrant blue for labels */
+        font-weight: bold;
+      }
+
+      span {
+        color: #333;
+      }
+    }
+  }
+
+  .toggle-row {
+    text-align: center;
+    margin-top: 15px;
+
+    .toggle-button {
+      padding: 10px 20px;
+      font-size: 14px;
+      font-weight: bold;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+
+      &.active {
+        background-color: red; /* Green for active state */
+      }
+
+      &.inactive {
+        background-color: green; /* Red for inactive state */
+      }
+
+      &:hover {
+        opacity: 0.9;
+      }
+    }
+  }
+}
+
 
 .search-bar {
   display: flex;
@@ -79,26 +161,7 @@
 .toggleRow {
     margin-top: 20px;
   }
-  
-  .toggle-button.active {
-    background-color: red;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 20px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-  }
-  
-  .toggle-button.inactive {
-    background-color: #3e8e41;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 20px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-  }
+
   
   
   
