@@ -7,8 +7,6 @@ import TableIn from './TableIn';
 const InformationSystem = () => {
   return (
     <>
- //<Filter />
-<TableInforSy /> 
 <TableIn />
     </>
     
