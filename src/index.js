@@ -9,6 +9,7 @@ import InformationSystem from './Components/Information/InformationSystem';
 import History from './Components/FullHistory/History';
 import Request from './Components/Request/Request';
 import PrinterInformation from './Components/Printer/PrinterInformation';
+import PageSetting from './Components/PS/PageSetting';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -24,6 +25,7 @@ root.render(
           <Route path="mayin" element={<PrinterInformation/>} />
           <Route path="toanbo" element={<History />} />
           <Route path="yeucau" element={<Request />} />
+          <Route path="hieuchinh" element={<PageSetting />} />
         </Route>
       </Routes>
     </BrowserRouter>

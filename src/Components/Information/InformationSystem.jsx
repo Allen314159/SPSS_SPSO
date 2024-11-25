@@ -1,16 +1,14 @@
-
-import React from 'react'
-import TableInforSy from  './TableInforSy'
-import Filter from './Filter';
-import TableIn from './TableIn';
+import React from "react";
+import TableIn from "./TableIn";
 
 const InformationSystem = () => {
   return (
     <>
-<TableIn />
+      <h2 className="header-title">THÔNG TIN HỆ THỐNG</h2>
+      <br />
+      <TableIn />
     </>
-    
   );
-}
+};
 
-export default InformationSystem
+export default InformationSystem;

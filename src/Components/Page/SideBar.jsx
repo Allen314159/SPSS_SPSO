@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { FaHome, FaInfoCircle, FaHistory, FaPrint } from 'react-icons/fa';
+import { FaHome, FaInfoCircle, FaHistory, FaPrint} from 'react-icons/fa';
+import { RiFileSettingsLine } from 'react-icons/ri';
 import './SideBar.scss';
 
 function Sidebar() {
@@ -34,6 +35,12 @@ function Sidebar() {
         <NavLink to="/yeucau" className="nav-link-side" activeClassName="active-link">
           <FaPrint className="icon" />
           <span className="link-text">Yêu cầu in ấn</span>
+        </NavLink>
+
+        {/* Page Setting */}
+        <NavLink to="/hieuchinh" className="nav-link-side" activeClassName="active-link">
+          <RiFileSettingsLine className="icon" />
+          <span className="link-text">Hiệu chỉnh trang</span>
         </NavLink>
       </div>
     </div>

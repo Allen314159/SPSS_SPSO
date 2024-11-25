@@ -1,16 +1,14 @@
 import * as React from "react";
 import { DataGrid } from "@mui/x-data-grid";
-import { Paper, Chip } from "@mui/material";
+import { Paper, Chip} from "@mui/material";
 import Toolbar from "../Toolbar";
 
 const DataTable = () => {
   const getStatusChip = (status) => {
     switch (status) {
-      case "Hoạt động":
+      case "Hoàn thành":
         return <Chip label={status} color="success" />;
-      case "Vô hiệu":
-        return <Chip label={status} color="error" />;
-      case "Đang in":
+      case "Đang đợi":
         return <Chip label={status} color="info" />;
       default:
         return null;
@@ -19,44 +17,53 @@ const DataTable = () => {
 
   const columns = [
     {
-      field: "id",
-      headerName: "MÃ SỐ",
-      flex: 1,
-      headerClassName: "header-column",
-      filterable: true,
-    },
-    {
-      field: "name",
-      headerName: "TÊN MÁY IN",
-      flex: 1,
-      headerClassName: "header-column",
-      filterable: true,
-    },
-    {
-      field: "location",
-      headerName: "ĐỊA ĐIỂM",
-      flex: 1,
-      headerClassName: "header-column",
-      filterable: true,
-    },
-    {
       field: "date",
-      headerName: "NGÀY BẮT ĐẦU HOẠT ĐỘNG",
+      headerName: "THỜI GIAN",
       type: "date",
       flex: 1,
       headerClassName: "header-column",
       filterable: true,
     },
     {
-      field: "type",
-      headerName: "LOẠI MÁY",
+      field: "id",
+      headerName: "MÃ SỐ MÁY IN",
+      flex: 1,
+      headerClassName: "header-column",
+      filterable: true,
+    },
+    {
+      field: "namep",
+      headerName: "TÊN MÁY IN",
+      flex: 1,
+      headerClassName: "header-column",
+      filterable: true,
+    },
+    {
+      field: "mssv",
+      headerName: "MSSV",
+      flex: 1,
+      headerClassName: "header-column",
+      filterable: true,
+    },
+    {
+      field: "name",
+      headerName: "HỌ VÀ TÊN",
+      flex: 1,
+      headerClassName: "header-column",
+      filterable: true,
+    },
+
+    {
+      field: "pageNum",
+      headerName: "SỐ TRANG IN",
+      type: "number",
       flex: 1,
       headerClassName: "header-column",
       filterable: true,
     },
     {
       field: "status",
-      headerName: "TÌNH TRẠNG",
+      headerName: "TRẠNG THÁI",
       flex: 1,
       headerClassName: "header-column",
       renderCell: (params) => getStatusChip(params.value),
@@ -66,53 +73,59 @@ const DataTable = () => {
 
   const data = [
     {
+      date: new Date(2020, 0, 1),
       id: "00001",
-      name: "Samsung",
-      location: "Tầng 2, H6, cơ sở 2",
-      date: new Date(2020, 0, 1),
-      type: "In trắng đen",
-      status: "Hoạt động",
+      namep: "Samsung",
+      mssv: "2221242",
+      name: "Nguyễn Văn A",
+      pageNum: 45,
+      status: "Đang đợi",
     },
     {
-      id: "00002",
-      name: "Canon",
-      location: "Tầng 2, H6, cơ sở 2",
-      date: new Date(2020, 0, 1),
-      type: "In màu",
-      status: "Đang in",
-    },
-    {
-      id: "00003",
-      name: "Pantum",
-      location: "Tầng 2, H6, cơ sở 2",
-      date: new Date(2020, 0, 1),
-      type: "In màu",
-      status: "Vô hiệu",
-    },
-    {
-      id: "00001",
-      name: "Samsung",
-      location: "Tầng 2, H6, cơ sở 2",
-      date: new Date(2020, 0, 1),
-      type: "In trắng đen",
-      status: "Hoạt động",
-    },
-    {
-      id: "00002",
-      name: "Canon",
-      location: "Tầng 2, H6, cơ sở 2",
-      date: new Date(2020, 0, 1),
-      type: "In màu",
-      status: "Đang in",
-    },
-    {
-      id: "00003",
-      name: "Pantum",
-      location: "Tầng 2, H6, cơ sở 2",
-      date: new Date(2020, 0, 1),
-      type: "In màu",
-      status: "Vô hiệu",
-    },
+        date: new Date(2020, 0, 1),
+        id: "00001",
+        namep: "Samsung",
+        mssv: "2221242",
+        name: "Nguyễn Văn A",
+        pageNum: 45,
+        status: "Đang đợi",
+      },
+      {
+        date: new Date(2020, 0, 1),
+        id: "00001",
+        namep: "Samsung",
+        mssv: "2221242",
+        name: "Nguyễn Văn A",
+        pageNum: 45,
+        status: "Đang đợi",
+      },
+      {
+        date: new Date(2020, 0, 1),
+        id: "00001",
+        namep: "Samsung",
+        mssv: "2221242",
+        name: "Nguyễn Văn A",
+        pageNum: 45,
+        status: "Đang đợi",
+      },
+      {
+        date: new Date(2020, 0, 1),
+        id: "00001",
+        namep: "Samsung",
+        mssv: "2221242",
+        name: "Nguyễn Văn A",
+        pageNum: 45,
+        status: "Đang đợi",
+      },
+      {
+        date: new Date(2020, 0, 1),
+        id: "00001",
+        namep: "Samsung",
+        mssv: "2221242",
+        name: "Nguyễn Văn A",
+        pageNum: 45,
+        status: "Đang đợi",
+      },
   ];
 
   const paginationModel = { page: 0, pageSize: 5 };
