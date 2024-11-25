@@ -19,51 +19,52 @@ const Request = () => {
         setLoading(false);
       }
     };
-
+  
     fetchRequests();
   }, []);
-
+  
   const handleAccept = async (index) => {
     const request = requests[index];
-
+  
     try {
-      // Make the PUT API call for acceptance
       const response = await axios.put(
-        `http://localhost:8080/admin/acceptPrintRequest?printer_id=${request.print_id}&file_id=${request.file_id}`
+        `http://localhost:8080/admin/acceptPrintRequest?orderNum=${request.order_num}&file_id=${request.file_id}`
       );
-
+  
       if (response.status === 200) {
-        // Update the request status locally if the API call was successful
         const updatedRequests = [...requests];
-        updatedRequests[index].statuss = 2; // Chấp nhận
+        updatedRequests[index].statuss = 2; // Update status to "accepted"
         setRequests(updatedRequests);
-        console.log("Accepted request with printer_id:", request.print_id, "and file_id:", request.file_id);
+        console.log("Accepted request successfully:", response.data);
       }
     } catch (error) {
       console.error("Error accepting request:", error);
     }
   };
-
+  
+  
   const handleReject = async (index) => {
     const request = requests[index];
-
+  
     try {
-      // Make the PUT API call for rejection
       const response = await axios.put(
-        `http://localhost:8080/admin/refusePrintRequest?printer_id=${request.print_id}&file_id=${request.file_id}`
+        `http://localhost:8080/admin/refusePrintRequest?order_num=${request.order_num}&file_id=${request.file_id}`
       );
-
+  
       if (response.status === 200) {
-        // Update the request status locally if the API call was successful
         const updatedRequests = [...requests];
-        updatedRequests[index].statuss = 1; // Từ chối
+        updatedRequests[index].statuss = 1; // Update status to "rejected"
         setRequests(updatedRequests);
-        console.log("Rejected request with printer_id:", request.print_id, "and file_id:", request.file_id);
+        console.log("Rejected request successfully:", response.data);
       }
     } catch (error) {
-      console.error("Error rejecting request:", error);
+      console.error(
+        "Error rejecting request:",
+        error.response?.data || error.message
+      );
     }
   };
+  
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>{error}</div>;
