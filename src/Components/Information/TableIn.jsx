@@ -2,6 +2,7 @@ import * as React from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import { Paper, Chip } from "@mui/material";
 import Toolbar from "../Toolbar";
+import AddPrinter from "./AddPrinter";
 
 const DataTable = () => {
   const getStatusChip = (status) => {
