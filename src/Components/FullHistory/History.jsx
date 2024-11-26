@@ -1,10 +1,12 @@
 import React from 'react';
-import TableHis from './TableHis';
+import TableHi from './TableHi';
 
 const History = () => {
   return (
     <>
-    <TableHis />
+    <h2 className='header-title'>LỊCH SỬ HỆ THỐNG</h2>
+    <br />
+    <TableHi />
     </>
   );
 };
