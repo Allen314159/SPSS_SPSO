@@ -14,10 +14,11 @@ h5,
   padding: 0;
   border: none;
   text-decoration: none;
-  background: none;
+  background: none ;
   -webkit-font-smoothing: antialiased;
   
 }
+
 
 menu,
 ol,
@@ -34,7 +35,7 @@ ul {
   gap: 20px;
   justify-content: space-around;
   padding: 20px;
-  background-color:#E7F5DC;
+  background: none;
   min-height: 20vh;
 }
 
@@ -53,15 +54,15 @@ ul {
 }
 
 .card {
-  background: linear-gradient(135deg, #f78ca0, #f9748f);
+  background: #1b263b;
 }
 
 .card2 {
-  background: linear-gradient(135deg, #84fab0, #8fd3f4);
+  background: #415a77;
 }
 
 .card:nth-child(3) {
-  background: linear-gradient(135deg, #ffecd2, #fcb69f);
+  background: #778da9;
 }
 
 /* Hover Effects */

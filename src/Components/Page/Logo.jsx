@@ -13,9 +13,9 @@ function Logo() {
         <img src={HCMUT} alt="Logo" />
         <span className="d-none d-lg-block">HCMUT SSPS</span>
         </a>
-        <i class="bi bi-layout-text-sidebar-reverse toggle-sidebar-btn"
+        {/* <i class="bi bi-layout-text-sidebar-reverse toggle-sidebar-btn"
         onClick={handleToggleSidebar}
-        ></i>
+        ></i> */}
     </div>
   )
 }

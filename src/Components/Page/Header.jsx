@@ -7,8 +7,8 @@ import Nav from "./Nav.jsx";
 function Header() {
   return (
     <header id="header" className="header fixed-top d-flex algin-items-center">
-      <Logo />
-      <SearchBar />
+       <Logo /> 
+    {/* <SearchBar /> */}
       <Nav />
     </header>
   );
