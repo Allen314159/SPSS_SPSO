@@ -12,16 +12,31 @@ const InformationSystem = () => {
 
   useEffect(() => {
     const fetchPrinters = async () => {
+      setLoading(true);
+      setError(null);
       try {
+        const token = localStorage.getItem("token");
+        if (!token) {
+          setError("Token is missing. Please log in.");
+          setLoading(false);
+          return;
+        }
+
         const response = await axios.get(
-          "http://localhost:8080/admin/getAllPrinter"
+          "http://localhost:8080/admin/getAllPrinter",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
         );
+
         const formattedData = response.data.map((printer) => ({
           ...printer,
         }));
         setPrinters(formattedData);
       } catch (err) {
-        console.error("error");
+        console.error(err);
         setError("Failed to fetch printers.");
       } finally {
         setLoading(false);
@@ -42,6 +57,7 @@ const InformationSystem = () => {
     setPrinters((prevPrinters) => [...prevPrinters, newPrinter]);
     setOpenDialog(false);
   };
+
   return (
     <>
       <h2 className="header-title">THÔNG TIN HỆ THỐNG</h2>
@@ -54,7 +70,6 @@ const InformationSystem = () => {
         onClose={() => setOpenDialog(false)}
         onAdd={handleAddPrinter}
       />
-
       <DataTable info={printers} />
     </>
   );

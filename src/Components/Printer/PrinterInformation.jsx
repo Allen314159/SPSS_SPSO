@@ -21,7 +21,7 @@ const PrinterHis = ({ printerId }) => {
         return "Không xác định";
     }
   };
-  
+
   const getStatusClass = (statuss) => {
     switch (statuss) {
       case 0:
@@ -34,19 +34,28 @@ const PrinterHis = ({ printerId }) => {
         return "unknown";
     }
   };
-  
 
   const fetchPrintHistory = async () => {
     setLoading(true);
     setError(null);
     try {
-      console.log("pass");
+      const token = localStorage.getItem("token");
+      if (!token) {
+        setError("Token is missing. Please log in.");
+        setLoading(false);
+        return;
+      }
+
       const response = await axios.get(
-        `http://localhost:8080/admin/getAllRequestOnPrinter/${printerId}`
+        `http://localhost:8080/admin/getAllRequestOnPrinter/${printerId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
       );
       setPrintHistory(response.data);
     } catch (err) {
-      console.log("error");
       setError("Failed to fetch print history.");
     } finally {
       setLoading(false);
@@ -66,36 +75,34 @@ const PrinterHis = ({ printerId }) => {
     <div className="printer-history">
       <h3 className="history-title">Lịch sử In</h3>
       {printHistory.length > 0 ? (
-      <table className="history-table">
-      <thead>
-        <tr>
-          <th>Mã số sinh viên</th>
-          <th>Mã số file in</th>
-          <th>Tên file</th>
-          <th>Địa điểm</th>
-          <th>Ngày in</th>
-          <th>Số Trang</th>
-          <th>Trạng Thái</th>
-        </tr>
-      </thead>
-      <tbody>
-        {printHistory.map((request) => (
-          <tr key={request.id}>
-            <td>{request.id}</td>
-            <td>{request.file_id}</td>
-            <td>{request.file_name}</td>
-            <td>{request.building}</td>
-            <td>{request.print_date}</td>
-            <td>{request.nb_of_page_used}</td>
-            <td className={`status ${getStatusClass(request.statuss)}`}>
-              {getStatusLabel(request.statuss)}
-            </td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
-    
-     
+        <table className="history-table">
+          <thead>
+            <tr>
+              <th>Mã số sinh viên</th>
+              <th>Mã số file in</th>
+              <th>Tên file</th>
+              <th>Địa điểm</th>
+              <th>Ngày in</th>
+              <th>Số Trang</th>
+              <th>Trạng Thái</th>
+            </tr>
+          </thead>
+          <tbody>
+            {printHistory.map((request) => (
+              <tr key={request.id}>
+                <td>{request.id}</td>
+                <td>{request.file_id}</td>
+                <td>{request.file_name}</td>
+                <td>{request.building}</td>
+                <td>{request.print_date}</td>
+                <td>{request.nb_of_page_used}</td>
+                <td className={`status ${getStatusClass(request.statuss)}`}>
+                  {getStatusLabel(request.statuss)}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       ) : (
         <div className="no-history">Không có lịch sử in.</div>
       )}
@@ -114,11 +121,23 @@ const PrinterInformation = () => {
     setLoading(true);
     setError(null);
     try {
+      const token = localStorage.getItem("token");
+      if (!token) {
+        setError("Token is missing. Please log in.");
+        setLoading(false);
+        return;
+      }
+
       const response = await axios.get(
-        `http://localhost:8080/admin/getPrinterById?printer_id=${printerId}`
+        `http://localhost:8080/admin/getPrinterById?printer_id=${printerId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
       );
       setPrinterData(response.data);
-      setSelectedPrinterId(printerId); // Update selected printer ID for history
+      setSelectedPrinterId(printerId);
     } catch (err) {
       setError("Failed to fetch printer information.");
     } finally {
@@ -130,10 +149,22 @@ const PrinterInformation = () => {
     if (!printerData) return;
     setLoading(true);
     try {
+      const token = localStorage.getItem("token");
+      if (!token) {
+        setError("Token is missing. Please log in.");
+        setLoading(false);
+        return;
+      }
+
       const newState = printerData.state === 0 ? 1 : 0;
       await axios.put(
         `http://localhost:8080/admin/setPrinterState?printer_id=${printerData.printer_id}`,
-        { state: newState }
+        { state: newState },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
       );
       setPrinterData((prevData) => ({
         ...prevData,
@@ -180,50 +211,47 @@ const PrinterInformation = () => {
       {loading && <div className="loading">Loading printer information...</div>}
       {error && <div className="error">Error: {error}</div>}
       {printerData && (
-  <>
-    <div className="printer-info-card">
-      <div className="images">
-        <img src={printerImage1} alt="Printer" className="image" />
-      </div>
-      <div className="info-grid">
-        <div className="info-row">
-          <strong>Mã số máy in:</strong>
-          <strong>  <span>{printerData.printer_id}</span> </strong>
-        
-        </div>
-        <div className="info-row">
-          <strong>Tòa nhà:</strong>
-          <strong>    <span>{printerData.building}</span></strong>
-       
-        </div>
-        <div className="info-row">
-          <strong>Mẫu mã:</strong>
-          <strong>    <span>{printerData.model}</span> </strong>
-      
-        </div>
-        <div className="info-row">
-          <strong>Ngày nhập:</strong>
-          <strong> <span>{printerData.import_date}</span> </strong>
-         
-        </div>
-        <div className="info-row">
-          <strong>Trạng thái:</strong>
-      <strong> <span>{getStateLabel(printerData.state)}</span>   </strong>   
-        </div>
-      </div>
-      <div className="toggle-row">
-        <button
-          onClick={togglePrinterState}
-          className={`toggle-button ${printerData.state === 1 ? "active" : "inactive"}`}
-        >
-          {printerData.state === 0 ? "Hoạt động hóa" : "Vô hiệu hóa"}
-        </button>
-      </div>
-    </div>
-    <PrinterHis printerId={selectedPrinterId} />
-  </>
-)}
-
+        <>
+          <div className="printer-info-card">
+            <div className="images">
+              <img src={printerImage1} alt="Printer" className="image" />
+            </div>
+            <div className="info-grid">
+              <div className="info-row">
+                <strong>Mã số máy in:</strong>
+                <span>{printerData.printer_id}</span>
+              </div>
+              <div className="info-row">
+                <strong>Tòa nhà:</strong>
+                <span>{printerData.building}</span>
+              </div>
+              <div className="info-row">
+                <strong>Mẫu mã:</strong>
+                <span>{printerData.model}</span>
+              </div>
+              <div className="info-row">
+                <strong>Ngày nhập:</strong>
+                <span>{printerData.import_date}</span>
+              </div>
+              <div className="info-row">
+                <strong>Trạng thái:</strong>
+                <span>{getStateLabel(printerData.state)}</span>
+              </div>
+            </div>
+            <div className="toggle-row">
+              <button
+                onClick={togglePrinterState}
+                className={`toggle-button ${
+                  printerData.state === 1 ? "active" : "inactive"
+                }`}
+              >
+                {printerData.state === 0 ? "Hoạt động hóa" : "Vô hiệu hóa"}
+              </button>
+            </div>
+          </div>
+          <PrinterHis printerId={selectedPrinterId} />
+        </>
+      )}
     </div>
   );
 };

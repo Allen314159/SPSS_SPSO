@@ -12,13 +12,29 @@ const Overal = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("http://localhost:8080/admin/getOverall");
+        // Get the token from localStorage
+        const token = localStorage.getItem("token");
+
+        if (!token) {
+          console.error("Token is missing. Please log in.");
+          return;
+        }
+
+        // Send the GET request with the Authorization header
+        const response = await axios.get("http://localhost:8080/admin/getOverall", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
         const data = response.data;
 
         // Update state with fetched data
         setNumOfPrinter(data.numOfPrinter);
         setNumOfStudent(data.numOfStudent);
         setNumOfRequest0(data.numOfRequest0);
+
+        console.log('pass overall')
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -39,9 +55,8 @@ const Overal = () => {
         <div className="content2">
           <div className="text3">
             <strong>
-            <div className="text4">{numOfPrinter !== null ? numOfPrinter : "Loading..."}</div>
+              <div className="text4">{numOfPrinter !== null ? numOfPrinter : "Loading..."}</div>
             </strong>
-        
           </div>
         </div>
       </div>
@@ -56,9 +71,8 @@ const Overal = () => {
         <div className="content2">
           <div className="text3">
             <strong>
-            <div className="text7">{numOfStudent !== null ? numOfStudent : "Loading..."}</div>
+              <div className="text7">{numOfStudent !== null ? numOfStudent : "Loading..."}</div>
             </strong>
-           
           </div>
         </div>
       </div>
@@ -73,7 +87,7 @@ const Overal = () => {
         <div className="content2">
           <div className="text3">
             <strong>
-            <div className="text4">{numOfRequest0 !== null ? numOfRequest0 : "Loading..."}</div>
+              <div className="text4">{numOfRequest0 !== null ? numOfRequest0 : "Loading..."}</div>
             </strong>
           </div>
         </div>

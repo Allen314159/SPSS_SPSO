@@ -11,11 +11,25 @@ const Request = () => {
   useEffect(() => {
     const fetchRequests = async () => {
       try {
-        const response = await axios.get("http://localhost:8080/admin/getAllPrintRequest");
+
+        const token = localStorage.getItem("token");
+        
+        if(! token){
+          console.error("Token is missing. please log in");
+        }
+
+        
+
+        const response = await axios.get("http://localhost:8080/admin/getAllPrintRequest", {
+          headers : {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        
         setRequests(response.data);
         setLoading(false);
       } catch (err) {
-        setError("Failed to fetch print requests");
+        setError("Lỗi khi lấy các yêu cầu in !!!");
         setLoading(false);
       }
     };
@@ -25,10 +39,20 @@ const Request = () => {
   
   const handleAccept = async (index) => {
     const request = requests[index];
+
+    const token = localStorage.getItem("token");
+    if (!token) {
+      setError("Token is missing. Please log in.");
+      return;
+    }
   
     try {
       const response = await axios.put(
-        `http://localhost:8080/admin/acceptPrintRequest?orderNum=${request.order_num}&file_id=${request.file_id}`
+        `http://localhost:8080/admin/acceptPrintRequest?orderNum=${request.order_num}&file_id=${request.file_id}`,
+        {},
+        {headers : {
+          Authorization: `Bearer ${token}`,
+        }}
       );
   
       if (response.status === 200) {
@@ -45,10 +69,23 @@ const Request = () => {
   
   const handleReject = async (index) => {
     const request = requests[index];
+
+    const token = localStorage.getItem("token");
+    if (!token) {
+      setError("Token is missing. Please log in.");
+      return;
+    }
+  
   
     try {
       const response = await axios.put(
-        `http://localhost:8080/admin/refusePrintRequest?order_num=${request.order_num}&file_id=${request.file_id}`
+        `http://localhost:8080/admin/refusePrintRequest?order_num=${request.order_num}&file_id=${request.file_id}`,
+        {},
+        {
+          headers:{
+            Authorization: `Bearer ${token}`,
+          }
+        }
       );
   
       if (response.status === 200) {
