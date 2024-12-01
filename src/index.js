@@ -18,6 +18,7 @@ root.render(
     <BrowserRouter>
       <Routes>
         {/* Use App as the layout for child routes */}
+        
         <Route path="/" element={<App />}>
           <Route index element={<Overal />} /> {/* Default route */}
           <Route path="tongquan" element={<Overal />} />
