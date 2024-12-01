@@ -8,6 +8,7 @@ import {
   Button,
   MenuItem,
 } from "@mui/material";
+import axios from "axios";
 
 const statusOptions = ["Hoạt động", "Vô hiệu", "Đang in"];
 
@@ -18,17 +19,42 @@ const AddPrinterDialog = ({ open, onClose, onAdd }) => {
   const [type, setType] = useState("");
   const [status, setStatus] = useState(statusOptions[0]);
 
-  const handleAdd = () => {
+  const handleAdd = async () => {
+    if (!name || !location || !date || !type) {
+      alert("Vui lòng điền đầy đủ thông tin!");
+      return;
+    }
     const newPrinter = {
-      id: Date.now().toString(), // Sử dụng timestamp làm ID duy nhất
+      id: Date.now().toString(), 
       name,
       location,
       date: new Date(date),
       type,
       status,
     };
-    onAdd(newPrinter);
-    onClose(); // Đóng cửa sổ sau khi thêm
+    try {
+      const response = await axios.post("http://localhost:8080/admin/insertNewPrinter",
+        {},
+        {
+          params: {
+            building: location,
+            model: type,
+            importDateString: date,
+          },
+        }
+      );
+      if (response.status === 200) {
+        alert("Thêm máy in thành công!");
+        onAdd(newPrinter);
+        onClose();
+      } else {
+        alert("Thêm máy in thất bại!");
+      }
+    } catch (error) {
+      console.error("Error adding printer:", error);
+      alert("Có lỗi xảy ra!");
+    }
+    
   };
 
   return (
