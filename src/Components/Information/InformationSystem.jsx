@@ -12,8 +12,7 @@ const InformationSystem = () => {
 
   useEffect(() => {
     const fetchPrinters = async () => {
-      setLoading(true);
-      setError(null);
+    
       try {
         const token = localStorage.getItem("token");
         if (!token) {
@@ -32,7 +31,11 @@ const InformationSystem = () => {
         );
 
         const formattedData = response.data.map((printer) => ({
-          ...printer,
+          id: printer.printer_id,
+          name: printer.model,
+          location: printer.building,
+          date: new Date(printer.import_date),
+          status: printer.state,
         }));
         setPrinters(formattedData);
       } catch (err) {
@@ -46,7 +49,7 @@ const InformationSystem = () => {
   }, []);
 
   if (loading) {
-    return <p>Loading data...</p>;
+    return <p>Hệ thống đang tải dữ liệu. Xin vui lòng chờ trong giây lát...</p>;
   }
 
   if (error) {

@@ -3,15 +3,17 @@ import { DataGrid } from "@mui/x-data-grid";
 import { Paper, Chip} from "@mui/material";
 import Toolbar from "../Toolbar";
 
-const DataTable = () => {
+const DataTable = ({hi}) => {
   const getStatusChip = (status) => {
     switch (status) {
-      case "Hoàn thành":
-        return <Chip label={status} color="success" />;
-      case "Đang đợi":
-        return <Chip label={status} color="info" />;
+      case 2:
+        return <Chip label='Hoàn thành' color="success" />;
+      case 1:
+        return <Chip label='Đang in' color="info" />;
+      case 0:
+        return <Chip label='Đang chờ' color="warning" />;
       default:
-        return null;
+        return <Chip label="Không xác định" color="default" />;
     }
   };
 
@@ -25,20 +27,6 @@ const DataTable = () => {
       filterable: true,
     },
     {
-      field: "id",
-      headerName: "MÃ SỐ MÁY IN",
-      flex: 1,
-      headerClassName: "header-column",
-      filterable: true,
-    },
-    {
-      field: "namep",
-      headerName: "TÊN MÁY IN",
-      flex: 1,
-      headerClassName: "header-column",
-      filterable: true,
-    },
-    {
       field: "mssv",
       headerName: "MSSV",
       flex: 1,
@@ -46,8 +34,23 @@ const DataTable = () => {
       filterable: true,
     },
     {
-      field: "name",
-      headerName: "HỌ VÀ TÊN",
+      field: "id",
+      headerName: "MÃ SỐ MÁY IN",
+      flex: 1,
+      headerClassName: "header-column",
+      filterable: true,
+    },
+    {
+      field: "location",
+      headerName: "ĐỊA ĐIỂM",
+      flex: 1,
+      headerClassName: "header-column",
+      filterable: true,
+    },
+
+    {
+      field: "file_name",
+      headerName: "TÊN FILE",
       flex: 1,
       headerClassName: "header-column",
       filterable: true,
@@ -71,67 +74,67 @@ const DataTable = () => {
     },
   ];
 
-  const data = [
-    {
-      date: new Date(2020, 0, 1),
-      id: "00001",
-      namep: "Samsung",
-      mssv: "2221242",
-      name: "Nguyễn Văn A",
-      pageNum: 45,
-      status: "Đang đợi",
-    },
-    {
-        date: new Date(2020, 0, 1),
-        id: "00001",
-        namep: "Samsung",
-        mssv: "2221242",
-        name: "Nguyễn Văn A",
-        pageNum: 45,
-        status: "Đang đợi",
-      },
-      {
-        date: new Date(2020, 0, 1),
-        id: "00001",
-        namep: "Samsung",
-        mssv: "2221242",
-        name: "Nguyễn Văn A",
-        pageNum: 45,
-        status: "Đang đợi",
-      },
-      {
-        date: new Date(2020, 0, 1),
-        id: "00001",
-        namep: "Samsung",
-        mssv: "2221242",
-        name: "Nguyễn Văn A",
-        pageNum: 45,
-        status: "Đang đợi",
-      },
-      {
-        date: new Date(2020, 0, 1),
-        id: "00001",
-        namep: "Samsung",
-        mssv: "2221242",
-        name: "Nguyễn Văn A",
-        pageNum: 45,
-        status: "Đang đợi",
-      },
-      {
-        date: new Date(2020, 0, 1),
-        id: "00001",
-        namep: "Samsung",
-        mssv: "2221242",
-        name: "Nguyễn Văn A",
-        pageNum: 45,
-        status: "Đang đợi",
-      },
-  ];
+  // const data = [
+  //   {
+  //     date: new Date(2020, 0, 1),
+  //     id: "00001",
+  //     namep: "Samsung",
+  //     mssv: "2221242",
+  //     name: "Nguyễn Văn A",
+  //     pageNum: 45,
+  //     status: "Đang đợi",
+  //   },
+  //   {
+  //       date: new Date(2020, 0, 1),
+  //       id: "00001",
+  //       namep: "Samsung",
+  //       mssv: "2221242",
+  //       name: "Nguyễn Văn A",
+  //       pageNum: 45,
+  //       status: "Đang đợi",
+  //     },
+  //     {
+  //       date: new Date(2020, 0, 1),
+  //       id: "00001",
+  //       namep: "Samsung",
+  //       mssv: "2221242",
+  //       name: "Nguyễn Văn A",
+  //       pageNum: 45,
+  //       status: "Đang đợi",
+  //     },
+  //     {
+  //       date: new Date(2020, 0, 1),
+  //       id: "00001",
+  //       namep: "Samsung",
+  //       mssv: "2221242",
+  //       name: "Nguyễn Văn A",
+  //       pageNum: 45,
+  //       status: "Đang đợi",
+  //     },
+  //     {
+  //       date: new Date(2020, 0, 1),
+  //       id: "00001",
+  //       namep: "Samsung",
+  //       mssv: "2221242",
+  //       name: "Nguyễn Văn A",
+  //       pageNum: 45,
+  //       status: "Đang đợi",
+  //     },
+  //     {
+  //       date: new Date(2020, 0, 1),
+  //       id: "00001",
+  //       namep: "Samsung",
+  //       mssv: "2221242",
+  //       name: "Nguyễn Văn A",
+  //       pageNum: 45,
+  //       status: "Đang đợi",
+  //     },
+  // ];
 
   const paginationModel = { page: 0, pageSize: 5 };
-  const [filterText, setFilterText] = React.useState("");
+  const [filterText] = React.useState("");
 
-  const filteredData = data.filter((row) =>
+  const filteredData = (hi || []).filter((row) =>
     Object.values(row).some((value) =>
       String(value).toLowerCase().includes(filterText.toLowerCase())
     )
