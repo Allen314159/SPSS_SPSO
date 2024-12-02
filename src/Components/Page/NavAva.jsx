@@ -32,6 +32,14 @@ function NavAva() {
         </li>
         
         <li>
+        <a
+            href="user"
+            className="dropdown-item d-flex align-items-center"
+            style={{ color: "black" }}
+          >
+            <i className="bi bi-person-circle" style={{ color: "black" }}></i>
+            <span style={{ color: "black" }}>Thông tin</span>
+          </a>
           <a
             href="/"
             className="dropdown-item d-flex align-items-center"
@@ -40,6 +48,8 @@ function NavAva() {
             <i className="bi bi-box-arrow-right" style={{ color: "black" }}></i>
             <span style={{ color: "black" }}>Đăng xuất</span>
           </a>
+
+
         </li>
       </ul>
     </li>
