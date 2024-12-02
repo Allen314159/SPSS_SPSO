@@ -36,7 +36,7 @@ const User = ({ id }) => {
       <div className="user-info">
         <div className="user-details">
           <p>
-            <strong>Tên tài khoản:</strong> {user.username} 
+            <strong>Tên tài khoản:</strong> {user.namee} 
           </p>
           <p>
             <strong>Email:</strong> {user.email}
