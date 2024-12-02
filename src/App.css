@@ -9,7 +9,7 @@ Global Variables and Fonts
   --second: #D6ECF5; /* Secondary color */
   --bgColor: var(--white-100, #FFF); /* Background color */
   --textColor: #1C1C1C; /* Default text color */
-  --footerBg: #2E3B4E; /* Footer background color */
+  --footerBg: #112D4E; /* Footer background color */
   --footerText: #ffffff; /* Footer text color */
 }
 
@@ -57,7 +57,7 @@ Layout
   margin-left: 210px; /* Adjust based on sidebar width */
   border-radius: 10px;
   padding: 20px;
-  background-color: #e0e1dd;
+  background-color: #EBF7FF;
 }
 
 .container {
@@ -71,8 +71,8 @@ Layout
 Header
 ------------------------------- */
 .header {
-  background-color: #778da9;
-  color: #ffffff;
+  background-color: #ffffff;
+  color: #4384DF;
   padding: 15px 20px;
   font-size: 18px;
   display: flex;
@@ -81,7 +81,7 @@ Header
 }
 
 .header a {
-  color: #ffffff;
+  color: #4384DF;
 }
 
 .header a:hover {
@@ -92,7 +92,7 @@ Header
 Sidebar
 ------------------------------- */
 .sidebar {
-  background-color: #778da9;
+  background-color: #ffffff;
   width: 250px;
   height: 100vh;
   position: fixed;
@@ -115,7 +115,7 @@ Sidebar
 }
 
 .sidebar a:hover {
-  background-color: #1b263b;
+  background-color: #3F72AF;
   color: #ffffff;
 }
 

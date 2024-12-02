@@ -14,8 +14,8 @@ const Footer = () => {
       <div className="divider"></div>
 
       <div className="quick-links">
-        <div>About My Bach Khoa</div>
-        <div>HCMUT</div>
+        <div>About Ho Chi Minh City University of Technology</div>
+        <a href="https://hcmut.edu.vn/" className="">HCMUT</a>
       </div>
 
       <div className="divider"></div>
@@ -23,7 +23,7 @@ const Footer = () => {
       <div className="brand-info">
         {/* Uncomment and adjust the logo source when ready */}
         {/* <img className="logo" src={hcmutLogo} alt="HCMUT Logo" /> */}
-        <div>© 2020 Lift Media. All rights reserved.</div>
+        {/* <div>© 2020 Lift Media. All rights reserved.</div> */}
         <div>HCMUT SSPS</div>
       </div>
     </footer>

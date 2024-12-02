@@ -40,15 +40,15 @@ ul {
 }
 
 /* Background Overlay */
-.frame::before {
-  content: "";
-  position: absolute;
+ .frame::before {
+ content: "";
+   position: absolute;
   top: 0;
-  left: 0;
+   left: 0;
   width: 100%;
-  height: 100%;
+   height: 100%;
   background: rgba(0, 0, 0, 0.3); /* 30% opacity black overlay */
-  z-index: 1; /* Ensure it layers beneath the content */
+ z-index: 1; /* Ensure it layers beneath the content */
 }
 
 /* Card Styles */

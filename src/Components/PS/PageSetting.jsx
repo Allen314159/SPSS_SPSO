@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import axios from "axios";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
-import './pageSetting.css';
+import "./pageSetting.css";
 
 function PageSetting() {
-  const [sem, setSem] = useState('');
-  const [defaultPageCount, setDefaultPageCount] = useState('');
+  const [sem, setSem] = useState("");
+  const [defaultPageCount, setDefaultPageCount] = useState("");
 
   const handleSubmit = async (event) => {
     event.preventDefault(); // Ngăn chặn hành vi mặc định của form
@@ -50,31 +50,40 @@ function PageSetting() {
   };
 
   return (
-
-      <div className="form-container">
-      <h2 className="header-title">HIỆU CHỈNH TRANG IN</h2>
-        <Box component="form" onSubmit={handleSubmit} noValidate autoComplete="off">
-          <TextField 
-            required 
-            id="outlined-required" 
-            label="Học kỳ" 
-            className="text-field" 
-            value={sem}
-            onChange={(e) => setSem(e.target.value)}
-          />
-          <TextField 
-            id="standard-number" 
-            label="Số trang in mặc định" 
-            type="number" 
-            InputLabelProps={{ shrink: true }} 
-            className="text-field" 
-            value={defaultPageCount}
-            onChange={(e) => setDefaultPageCount(e.target.value)}
-          />
-          <button type="submit" className="submit-button">HIỆU CHỈNH</button>
-        </Box>
-      </div>
-  
+    <>
+    <h2 className="header-title">HIỆU CHỈNH TRANG IN</h2>
+    <br />
+    <div className="form-container">   
+      <Box
+        component="form"
+        onSubmit={handleSubmit}
+        noValidate
+        autoComplete="off"
+      >
+        <TextField
+          required
+          id="outlined-required"
+          label="Học kỳ"
+          className="text-field"
+          value={sem}
+          onChange={(e) => setSem(e.target.value)}
+        />
+        <TextField
+          id="standard-number"
+          label="Số trang in mặc định"
+          type="number"
+          InputLabelProps={{ shrink: true }}
+          className="text-field"
+          value={defaultPageCount}
+          onChange={(e) => setDefaultPageCount(e.target.value)}
+        />
+        <button type="submit" className="submit-button">
+          HIỆU CHỈNH
+        </button>
+      </Box>
+    </div>
+    </>
+   
   );
 }
 
