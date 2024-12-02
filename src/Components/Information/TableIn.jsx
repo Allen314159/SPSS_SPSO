@@ -6,14 +6,12 @@ import Toolbar from "../Toolbar";
 const DataTable = ({info}) => {
   const getStatusChip = (status) => {
     switch (status) {
-      case "Hoạt động":
-        return <Chip label={status} color="success" />;
-      case "Vô hiệu":
-        return <Chip label={status} color="error" />;
-      case "Đang in":
-        return <Chip label={status} color="info" />;
+      case 1:
+        return <Chip label='Hoạt động' color="success" />;
+      case 0:
+        return <Chip label='Vô hiệu' color="error" />;
       default:
-        return null;
+        return <Chip label="Không xác định" color="default" />;
     }
   };
 
@@ -47,13 +45,13 @@ const DataTable = ({info}) => {
       headerClassName: "header-column",
       filterable: true,
     },
-    {
-      field: "type",
-      headerName: "LOẠI MÁY",
-      flex: 1,
-      headerClassName: "header-column",
-      filterable: true,
-    },
+    // {
+    //   field: "type",
+    //   headerName: "LOẠI MÁY",
+    //   flex: 1,
+    //   headerClassName: "header-column",
+    //   filterable: true,
+    // },
     {
       field: "status",
       headerName: "TÌNH TRẠNG",
@@ -64,61 +62,61 @@ const DataTable = ({info}) => {
     },
   ];
 
-  const data = [
-    {
-      id: "00001",
-      name: "Samsung",
-      location: "Tầng 2, H6, cơ sở 2",
-      date: new Date(2020, 0, 1),
-      type: "In trắng đen",
-      status: "Hoạt động",
-    },
-    {
-      id: "00002",
-      name: "Canon",
-      location: "Tầng 2, H6, cơ sở 2",
-      date: new Date(2020, 0, 1),
-      type: "In màu",
-      status: "Đang in",
-    },
-    {
-      id: "00003",
-      name: "Pantum",
-      location: "Tầng 2, H6, cơ sở 2",
-      date: new Date(2020, 0, 1),
-      type: "In màu",
-      status: "Vô hiệu",
-    },
-    {
-      id: "00001",
-      name: "Samsung",
-      location: "Tầng 2, H6, cơ sở 2",
-      date: new Date(2020, 0, 1),
-      type: "In trắng đen",
-      status: "Hoạt động",
-    },
-    {
-      id: "00002",
-      name: "Canon",
-      location: "Tầng 2, H6, cơ sở 2",
-      date: new Date(2020, 0, 1),
-      type: "In màu",
-      status: "Đang in",
-    },
-    {
-      id: "00003",
-      name: "Pantum",
-      location: "Tầng 2, H6, cơ sở 2",
-      date: new Date(2020, 0, 1),
-      type: "In màu",
-      status: "Vô hiệu",
-    },
-  ];
+  // const data = [
+  //   {
+  //     id: "00001",
+  //     name: "Samsung",
+  //     location: "Tầng 2, H6, cơ sở 2",
+  //     date: new Date(2020, 0, 1),
+  //     type: "In trắng đen",
+  //     status: "Hoạt động",
+  //   },
+  //   {
+  //     id: "00002",
+  //     name: "Canon",
+  //     location: "Tầng 2, H6, cơ sở 2",
+  //     date: new Date(2020, 0, 1),
+  //     type: "In màu",
+  //     status: "Đang in",
+  //   },
+  //   {
+  //     id: "00003",
+  //     name: "Pantum",
+  //     location: "Tầng 2, H6, cơ sở 2",
+  //     date: new Date(2020, 0, 1),
+  //     type: "In màu",
+  //     status: "Vô hiệu",
+  //   },
+  //   {
+  //     id: "00001",
+  //     name: "Samsung",
+  //     location: "Tầng 2, H6, cơ sở 2",
+  //     date: new Date(2020, 0, 1),
+  //     type: "In trắng đen",
+  //     status: "Hoạt động",
+  //   },
+  //   {
+  //     id: "00002",
+  //     name: "Canon",
+  //     location: "Tầng 2, H6, cơ sở 2",
+  //     date: new Date(2020, 0, 1),
+  //     type: "In màu",
+  //     status: "Đang in",
+  //   },
+  //   {
+  //     id: "00003",
+  //     name: "Pantum",
+  //     location: "Tầng 2, H6, cơ sở 2",
+  //     date: new Date(2020, 0, 1),
+  //     type: "In màu",
+  //     status: "Vô hiệu",
+  //   },
+  // ];
 
   const paginationModel = { page: 0, pageSize: 5 };
-  const [filterText, setFilterText] = React.useState("");
+  const [filterText] = React.useState("");
 
-  const filteredData = data.filter((row) =>
+  const filteredData = (info || []).filter((row) =>
     Object.values(row).some((value) =>
       String(value).toLowerCase().includes(filterText.toLowerCase())
     )
