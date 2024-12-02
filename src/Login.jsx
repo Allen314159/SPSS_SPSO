@@ -17,6 +17,7 @@ const LoginPage = () => {
       });
 
       if (response.data.response === "Login successfully!") {
+        // save tokem
         localStorage.setItem("token", response.data.token);
         localStorage.setItem("isAuth", true);
         console.log("Login successful!");

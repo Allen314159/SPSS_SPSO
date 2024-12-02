@@ -13,7 +13,9 @@ const InformationSystem = () => {
   useEffect(() => {
     const fetchPrinters = async () => {
       setLoading(true);
+      
       setError(null);
+      
       try {
         const token = localStorage.getItem("token");
         if (!token) {
