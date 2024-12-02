@@ -1,6 +1,6 @@
 import React from "react";
 import "./Footer.scss";
-import hcmut from "../images/HCMUT.png";
+// import hcmutLogo from "../images/HCMUT.png";
 
 const Footer = () => {
   return (
@@ -10,12 +10,19 @@ const Footer = () => {
         <div>contact@hcmut.com.edu</div>
         <div>(434) 546-4356</div>
       </div>
+
+      <div className="divider"></div>
+
       <div className="quick-links">
         <div>About My Bach Khoa</div>
         <div>HCMUT</div>
       </div>
+
+      <div className="divider"></div>
+
       <div className="brand-info">
-        {/* <img src='hcmut' alt="HCMUT Logo" /> */}
+        {/* Uncomment and adjust the logo source when ready */}
+        {/* <img className="logo" src={hcmutLogo} alt="HCMUT Logo" /> */}
         <div>© 2020 Lift Media. All rights reserved.</div>
         <div>HCMUT SSPS</div>
       </div>

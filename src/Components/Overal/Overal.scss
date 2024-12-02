@@ -14,11 +14,9 @@ h5,
   padding: 0;
   border: none;
   text-decoration: none;
-  background: none ;
+  background: none;
   -webkit-font-smoothing: antialiased;
-  
 }
-
 
 menu,
 ol,
@@ -35,18 +33,36 @@ ul {
   gap: 20px;
   justify-content: space-around;
   padding: 20px;
-  background: none;
-  min-height: 20vh;
+  min-height: 90vh; /* Ensure the frame covers the entire viewport */
+  position: relative; /* Allows the overlay to work properly */
+  background: url("../images/bg.png") no-repeat center center fixed; /* Background image */
+  background-size: cover; /* Make the image cover the entire area */
+}
+
+/* Background Overlay */
+.frame::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3); /* 30% opacity black overlay */
+  z-index: 1; /* Ensure it layers beneath the content */
 }
 
 /* Card Styles */
 .card,
 .card2 {
-  background-color: #ffffff;
+  position: relative; /* Ensure proper layering over the overlay */
+  z-index: 2; /* Content sits above the overlay */
+  background-color: rgba(255, 255, 255, 0.8); /* Slight transparency */
+  margin-top: 30px;
   border-radius: 12px;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
   padding: 20px;
   width: 300px;
+  height: 200px;
   display: flex;
   flex-direction: column;
   gap: 15px;
@@ -54,15 +70,15 @@ ul {
 }
 
 .card {
-  background: #1b263b;
+  background: rgba(27, 38, 59, 0.8); /* Adjusted for transparency */
 }
 
 .card2 {
-  background: #415a77;
+  background: rgba(65, 90, 119, 0.8); /* Adjusted for transparency */
 }
 
 .card:nth-child(3) {
-  background: #778da9;
+  background: rgba(119, 141, 169, 0.8); /* Adjusted for transparency */
 }
 
 /* Hover Effects */
@@ -102,7 +118,6 @@ ul {
   color: white;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
-
 
 .icon-text {
   display: flex;

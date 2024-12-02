@@ -208,7 +208,7 @@ const PrinterInformation = () => {
           </button>
         </div>
       </div>
-      {loading && <div className="loading">Loading printer information...</div>}
+      {loading && <div className="loading">Hệ thống đang tải dữ liệu. Vui lòng chờ trong giây lát...</div>}
       {error && <div className="error">Error: {error}</div>}
       {printerData && (
         <>

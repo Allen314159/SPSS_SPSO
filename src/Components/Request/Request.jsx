@@ -36,10 +36,11 @@ const Request = () => {
   
     fetchRequests();
   }, []);
+
   
   const handleAccept = async (index) => {
     const request = requests[index];
-
+  
     const token = localStorage.getItem("token");
     if (!token) {
       setError("Token is missing. Please log in.");
@@ -50,21 +51,50 @@ const Request = () => {
       const response = await axios.put(
         `http://localhost:8080/admin/acceptPrintRequest?orderNum=${request.order_num}&file_id=${request.file_id}`,
         {},
-        {headers : {
-          Authorization: `Bearer ${token}`,
-        }}
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
       );
   
       if (response.status === 200) {
+        // Update the status in the UI
         const updatedRequests = [...requests];
-        updatedRequests[index].statuss = 2; // Update status to "accepted"
+        updatedRequests[index].statuss = 2; // Status "accepted"
         setRequests(updatedRequests);
+  
         console.log("Accepted request successfully:", response.data);
+  
+        // Download the file
+        const downloadResponse = await axios.get(
+          `http://localhost:8080/admin/downloadFile/${request.file_id}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+            responseType: "blob", // Ensure binary data
+          }
+        );
+  
+        // Create a download link
+        const blob = new Blob([downloadResponse.data], {
+          type: downloadResponse.headers["content-type"],
+        });
+        const url = window.URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.href = url;
+        link.setAttribute("download", `${request.file_name}`); // Use the file name from the request
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+        window.URL.revokeObjectURL(url); // Clean up URL object
       }
     } catch (error) {
-      console.error("Error accepting request:", error);
+      console.error("Error accepting request:", error.response?.data || error.message);
     }
   };
+  
   
   
   const handleReject = async (index) => {
@@ -103,7 +133,7 @@ const Request = () => {
   };
   
 
-  if (loading) return <div>Loading...</div>;
+  if (loading) return <div>Hệ thống đang tải dữ liệu. Vui lòng chờ trong giây lát...</div>;
   if (error) return <div>{error}</div>;
 
   return (
@@ -126,7 +156,7 @@ const Request = () => {
                 // Chờ xét duyệt
                 <div className="buttons">
                   <button className="accept-btn" onClick={() => handleAccept(index)}>
-                    Chấp nhận
+                    Chấp nhận và tải xuống
                   </button>
                   <button className="reject-btn" onClick={() => handleReject(index)}>
                     Từ chối
@@ -139,9 +169,11 @@ const Request = () => {
                 </div>
               ) : request.statuss === 2 ? (
                 // Đã chấp nhận
-                <div className="status">
-                  <FaCheck color="green" /> Đã chấp nhận
+                <div className="buttons">
+                  <FaCheck color="green" />  Đã tải xuống 
                 </div>
+                
+                
               ) : (
                 // Trường hợp không xác định (nếu có)
                 <div className="status">Không xác định</div>

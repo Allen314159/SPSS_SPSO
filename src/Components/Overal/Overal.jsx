@@ -1,18 +1,16 @@
 import React, { useEffect, useState } from "react";
 import "./Overal.scss";
 import axios from "axios";
+import Background from "../images/bg.png"
 
 const Overal = () => {
-  // Declare state variables for dynamic data
   const [numOfPrinter, setNumOfPrinter] = useState(null);
   const [numOfStudent, setNumOfStudent] = useState(null);
   const [numOfRequest0, setNumOfRequest0] = useState(null);
 
-  // Fetch data when the component mounts
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // Get the token from localStorage
         const token = localStorage.getItem("token");
 
         if (!token) {
@@ -20,7 +18,6 @@ const Overal = () => {
           return;
         }
 
-        // Send the GET request with the Authorization header
         const response = await axios.get("http://localhost:8080/admin/getOverall", {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -28,13 +25,11 @@ const Overal = () => {
         });
 
         const data = response.data;
-
-        // Update state with fetched data
         setNumOfPrinter(data.numOfPrinter);
         setNumOfStudent(data.numOfStudent);
         setNumOfRequest0(data.numOfRequest0);
 
-        console.log('pass overall')
+        console.log("pass overall");
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -92,6 +87,8 @@ const Overal = () => {
           </div>
         </div>
       </div>
+
+
     </div>
   );
 };
