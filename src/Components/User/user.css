@@ -8,6 +8,7 @@
     margin: 20px auto; /* Căn giữa */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Đổ bóng nhẹ */
     font-family: Arial, sans-serif; /* Font chữ */
+    color: black;
   }
   
   .user-details {

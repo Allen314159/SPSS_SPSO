@@ -17,11 +17,13 @@ const LoginPage = () => {
       });
 
       if (response.data.response === "Login successfully!") {
-        // Save token
+        // Save token and user_id
         localStorage.setItem("token", response.data.token);
+        localStorage.setItem("user_id", response.data.user_id);
         localStorage.setItem("isAuth", true);
+
         console.log("Login successful!");
-        navigate("/admin"); // Redirect to the admin page
+        navigate("/admin");
       } else {
         alert(response.data.response);
       }

@@ -3,10 +3,10 @@ import "./user.css";
 import axios from "axios";
 
 const User = ({ id }) => {
-  const [user, setUser ] = useState({});
+  const [user, setUser] = useState({});
 
   useEffect(() => {
-    const fetchUser  = async () => {
+    const fetchUser = async () => {
       try {
         const token = localStorage.getItem("token");
         if (!token) {
@@ -14,20 +14,23 @@ const User = ({ id }) => {
           return;
         }
 
-        const response = await axios.get(`http://localhost:8080/admin/${id}`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
 
-        console.log("User  data:", response.data); 
-        setUser (response.data);
+        const userId = localStorage.getItem("user_id");
+    const response = await axios.get(`http://localhost:8080/admin/${userId}`, {
+  headers: {
+    Authorization: `Bearer ${localStorage.getItem("token")}`,
+  },
+});
+
+
+        console.log("User data:", response.data);
+        setUser(response.data); // Adjust based on actual response structure
       } catch (error) {
         console.error("Failed to fetch user:", error);
       }
     };
 
-    fetchUser ();
+    fetchUser();
   }, [id]);
 
   return (
@@ -36,10 +39,10 @@ const User = ({ id }) => {
       <div className="user-info">
         <div className="user-details">
           <p>
-            <strong>Tên tài khoản:</strong> {user.namee} 
+            <strong>Tên tài khoản:</strong> {user.namee}
           </p>
           <p>
-            <strong>Email:</strong> {user.email}
+            <strong>Email:</strong> {user.email }
           </p>
         </div>
       </div>
