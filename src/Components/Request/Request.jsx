@@ -20,7 +20,7 @@ const Request = () => {
 
         
 
-        const response = await axios.get("http://localhost:8080/admin/getAllPrintRequest", {
+        const response = await axios.get("https://spss-2-bscxbxhygjcwh0ct.canadacentral-01.azurewebsites.net/admin/getAllPrintRequest", {
           headers : {
             Authorization: `Bearer ${token}`,
           },
@@ -49,7 +49,7 @@ const Request = () => {
   
     try {
       const response = await axios.put(
-        `http://localhost:8080/admin/acceptPrintRequest?orderNum=${request.order_num}&file_id=${request.file_id}`,
+        `https://spss-2-bscxbxhygjcwh0ct.canadacentral-01.azurewebsites.net/admin/acceptPrintRequest?orderNum=${request.order_num}&file_id=${request.file_id}`,
         {},
         {
           headers: {
@@ -68,7 +68,7 @@ const Request = () => {
   
         // Download the file
         const downloadResponse = await axios.get(
-          `http://localhost:8080/admin/downloadFile/${request.file_id}`,
+          `https://spss-2-bscxbxhygjcwh0ct.canadacentral-01.azurewebsites.net/admin/downloadFile/${request.file_id}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,

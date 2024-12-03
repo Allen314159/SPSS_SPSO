@@ -19,12 +19,7 @@ const AddPrinterDialog = ({ open, onClose, onAdd }) => {
       alert("Vui lòng điền đầy đủ thông tin!");
       return;
     }
-    const newPrinter = {
-      id: Date.now().toString(),
-      name,
-      location,
-      date: new Date(date),
-    };
+   
     try {
       const token = localStorage.getItem("token");
       if (!token) {
@@ -33,7 +28,7 @@ const AddPrinterDialog = ({ open, onClose, onAdd }) => {
       }
 
       const response = await axios.post(
-        "http://localhost:8080/admin/insertNewPrinter",
+        "https://spss-2-bscxbxhygjcwh0ct.canadacentral-01.azurewebsites.net/admin/insertNewPrinter",
         {},
         {
           headers: {
@@ -48,7 +43,7 @@ const AddPrinterDialog = ({ open, onClose, onAdd }) => {
       );
       if (response.status === 200) {
         alert("Thêm máy in thành công!");
-        onAdd(newPrinter);
+        onAdd(response.data);
         onClose();
       } else {
         alert("Thêm máy in thất bại!");

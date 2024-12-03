@@ -9,7 +9,7 @@ function PageSetting() {
   const [defaultPageCount, setDefaultPageCount] = useState("");
 
   const handleSubmit = async (event) => {
-    event.preventDefault(); // Ngăn chặn hành vi mặc định của form
+    event.preventDefault(); 
 
     if (!sem || !defaultPageCount) {
       alert("Vui lòng điền đầy đủ thông tin!");
@@ -24,7 +24,7 @@ function PageSetting() {
       }
 
       const response = await axios.post(
-        "http://localhost:8080/admin/new",
+        "https://spss-2-bscxbxhygjcwh0ct.canadacentral-01.azurewebsites.net/admin/new",
         {},
         {
           headers: {

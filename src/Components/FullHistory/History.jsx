@@ -18,7 +18,7 @@ const History = () => {
         }
 
         const response = await axios.get(
-          "http://localhost:8080/admin/getAllPrintRequest",
+          "https://spss-2-bscxbxhygjcwh0ct.canadacentral-01.azurewebsites.net/admin/getAllPrintRequest",
           {
             headers: {
               Authorization: `Bearer ${token}`,

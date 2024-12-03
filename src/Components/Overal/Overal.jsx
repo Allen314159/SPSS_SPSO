@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./Overal.scss";
 import axios from "axios";
-import Background from "../images/bg.png"
 
 const Overal = () => {
   const [numOfPrinter, setNumOfPrinter] = useState(null);
@@ -18,7 +17,7 @@ const Overal = () => {
           return;
         }
 
-        const response = await axios.get("http://localhost:8080/admin/getOverall", {
+        const response = await axios.get("https://spss-2-bscxbxhygjcwh0ct.canadacentral-01.azurewebsites.net/admin/getOverall", {
           headers: {
             Authorization: `Bearer ${token}`,
           },

@@ -11,7 +11,7 @@ const LoginPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:8080/auth/authen", {
+      const response = await axios.post("https://spss-2-bscxbxhygjcwh0ct.canadacentral-01.azurewebsites.net/auth/authen", {
         username,
         password,
       });

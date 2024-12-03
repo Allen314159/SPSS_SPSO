@@ -47,7 +47,7 @@ const PrinterHis = ({ printerId }) => {
       }
 
       const response = await axios.get(
-        `http://localhost:8080/admin/getAllRequestOnPrinter/${printerId}`,
+        `https://spss-2-bscxbxhygjcwh0ct.canadacentral-01.azurewebsites.net/admin/getAllRequestOnPrinter/${printerId}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -129,7 +129,7 @@ const PrinterInformation = () => {
       }
 
       const response = await axios.get(
-        `http://localhost:8080/admin/getPrinterById?printer_id=${printerId}`,
+        `https://spss-2-bscxbxhygjcwh0ct.canadacentral-01.azurewebsites.net/admin/getPrinterById?printer_id=${printerId}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -158,7 +158,7 @@ const PrinterInformation = () => {
 
       const newState = printerData.state === 0 ? 1 : 0;
       await axios.put(
-        `http://localhost:8080/admin/setPrinterState?printer_id=${printerData.printer_id}`,
+        `https://spss-2-bscxbxhygjcwh0ct.canadacentral-01.azurewebsites.net/admin/setPrinterState?printer_id=${printerData.printer_id}`,
         { state: newState },
         {
           headers: {

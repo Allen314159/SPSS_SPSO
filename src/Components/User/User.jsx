@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./user.css";
 import axios from "axios";
+import tk from '../images/tk.png'
 
 const User = ({ id }) => {
   const [user, setUser] = useState({});
@@ -16,7 +17,7 @@ const User = ({ id }) => {
 
 
         const userId = localStorage.getItem("user_id");
-    const response = await axios.get(`http://localhost:8080/admin/${userId}`, {
+    const response = await axios.get(`https://spss-2-bscxbxhygjcwh0ct.canadacentral-01.azurewebsites.net/admin/${userId}`, {
   headers: {
     Authorization: `Bearer ${localStorage.getItem("token")}`,
   },
@@ -24,7 +25,7 @@ const User = ({ id }) => {
 
 
         console.log("User data:", response.data);
-        setUser(response.data); // Adjust based on actual response structure
+        setUser(response.data); 
       } catch (error) {
         console.error("Failed to fetch user:", error);
       }
@@ -38,6 +39,11 @@ const User = ({ id }) => {
       <h2 className="header-title">THÔNG TIN TÀI KHOẢN</h2>
       <div className="user-info">
         <div className="user-details">
+        <img 
+        src={tk} 
+        alt="User  Avatar" 
+        className="user-avatar" 
+      />
           <p>
             <strong>Tên tài khoản:</strong> {user.namee}
           </p>
