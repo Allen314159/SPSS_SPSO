@@ -15,7 +15,7 @@ function NavNotice() {
           return;
         }
 
-        const response = await axios.get("http://localhost:8080/admin/getOverall", {
+        const response = await axios.get("https://spss-2-bscxbxhygjcwh0ct.canadacentral-01.azurewebsites.net/admin/getOverall", {
           headers: {
             Authorization: `Bearer ${token}`,
           },
